@@ -4,8 +4,28 @@ services:
     ports:
       # Проброс портов
       - "8080:8080"
-    command: npm run dev
+    command: bash -c 'sleep 3 && npm start'
 
     volumes:
       # Текущая директория пробрасывается в директорию /app внутри контейнера
       - ./app:/app
+    # links:
+    #   - db
+    environment:
+      PGHOST: '0.0.0.0'
+      PGDATABASE: 'postgres'
+      PGUSER: 'postgres'
+      PGPASSWORD: 'postgres'
+
+    depends_on:
+      - db
+  caddy:
+    image: caddy
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - $PWD/services/caddy/Caddyfile:/etc/caddy/Caddyfile
+    depends_on:
+      - app

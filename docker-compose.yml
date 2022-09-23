@@ -5,3 +5,15 @@ services:
       context: .
       dockerfile: Dockerfile.production
     image: makmakkerti/devops-for-programmers-project-74:latest
+  db:
+    image: postgres
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: 'postgres'
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
