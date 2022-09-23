@@ -3,8 +3,5 @@ services:
   app:
     build:
       context: .
-      dockerfile: Dockerfile
-
-    volumes:
-      # Текущая директория пробрасывается в директорию /app внутри контейнера
-      - "./app/:/app"
+      dockerfile: Dockerfile.production
+    image: makmakkerti/devops-for-programmers-project-74:latest
