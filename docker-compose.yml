@@ -5,6 +5,14 @@ services:
       context: .
       dockerfile: Dockerfile.production
     image: makmakkerti/devops-for-programmers-project-74:latest
+    environment:
+      PGHOST: 'db'
+      PGDATABASE: 'postgres'
+      PGUSER: 'postgres'
+      PGPASSWORD: 'password'
+    depends_on:
+      - db
+
   db:
     image: postgres
     restart: always

@@ -9,16 +9,7 @@ services:
     volumes:
       # Текущая директория пробрасывается в директорию /app внутри контейнера
       - ./app:/app
-    # links:
-    #   - db
-    environment:
-      PGHOST: '0.0.0.0'
-      PGDATABASE: 'postgres'
-      PGUSER: 'postgres'
-      PGPASSWORD: 'postgres'
 
-    depends_on:
-      - db
   caddy:
     image: caddy
     restart: unless-stopped
